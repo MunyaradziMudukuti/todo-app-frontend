@@ -1,0 +1,121 @@
+.signup-container{
+  margin: auto auto;
+  border-radius: 15px;
+  width: 700px;
+  height: 700px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #000000b3;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #ff5c35;
+}
+
+::ng-deep .mat-slide-toggle .mat-slide-toggle-bar {
+  background-color: rgb(187, 187, 187);
+}
+
+::ng-deep .mat-slide-toggle .mat-slide-toggle-thumb {
+  background-color: rgb(187, 187, 187);
+}
+
+.logo-container{
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-title{
+  margin-top: 25px;
+  margin-bottom: 35px;
+  font-size: 28px;
+  font-weight: 500;
+  color: #000000b3;
+}
+
+.inputs-container form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-screen-image{
+  width: 340px;
+  height: 150px;
+}
+
+::ng-deep .signup-full-width {
+  min-width: 350px !important;
+  margin: 0px 12px;
+}
+
+.mat-input-element {
+  color: #000000b3 !important;
+}
+
+.mat-form-field-label {
+  color: #000000b3 !important;
+}
+
+.mat-form-field-underline {
+  background-color: #000000b3 !important;
+}
+
+.mat-form-field-ripple {
+  background-color: #000000b3 !important;
+}
+
+.mat-form-field-required-marker {
+  color: #000000b3 !important;
+}
+
+.mat-icon{
+  color: #ff5c35 !important;
+}
+
+.patients-table, .patients-table table {
+  min-width: 1500px !important;
+}
+
+.actions-container{
+  margin: 50px 0px 25px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-button-container button{
+  margin: 0px 6px;
+}
+
+.signup-action-button{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.login-button{
+  background-color: #ff5c35;
+}
+
+.signup-button{
+  background-color: #ff5c35;
+  color: #ff5c35;
+}
+
+.forgot-password-link{
+  margin: 25px 0px;
+}
+

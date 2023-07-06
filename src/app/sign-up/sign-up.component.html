@@ -1,0 +1,39 @@
+<div class="signup-container">
+  <div class="signup-container-inner">
+    <div class="logo-container">
+      <img src="../../assets/todoicon.png"
+           alt="" class="signup-screen-image">
+      <span class="signup-title">
+        Signup
+      </span>
+    </div>
+    <div class="inputs-container">
+      <div class="form-group">
+      <form  [formGroup] = signUpForm >
+        <mat-form-field class="signup-full-width" style="text-align: center;">
+          <mat-icon matPrefix>person_add</mat-icon>
+          <mat-label>Enter Your Email</mat-label>
+          <input matInput type="text" formControlName = "email">
+        </mat-form-field>
+        <mat-form-field class="signup-full-width" style="text-align: center;">
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-label>Enter Desired Password</mat-label>
+          <input matInput type="password" formControlName = "password">
+        </mat-form-field>
+        <mat-form-field class="signup-full-width" style="text-align: center;">
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-label>Repeat Your Password</mat-label>
+          <input matInput type="password" formControlName = "confirmPassword">
+        </mat-form-field>
+      </form>
+      </div>
+    </div>
+    <div class="actions-container">
+      <div class="signup-button-container">
+        <button mat-raised-button class="login-button signup-action-button" (click)="loginClicked()">Login</button>
+        <button mat-raised-button  class="signup-button signup-action-button" (click)="signUp()">Complete</button>
+      </div>
+      <a class="forgot-password-link" href=".">Forgot Password?</a>
+    </div>
+  </div>
+</div>
