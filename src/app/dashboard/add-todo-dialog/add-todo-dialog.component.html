@@ -1,0 +1,44 @@
+<h2 mat-dialog-title class="dialog-title">Edit Task</h2>
+<mat-dialog-content class="dialog-content" style="height: 50%">
+  <form [formGroup]="taskForm">
+
+    <div>
+      <mat-form-field>
+        <input matInput type="text" formControlName="title" placeholder="Title">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <textarea matInput formControlName="description" placeholder="Todo Description" rows="4"></textarea>
+      </mat-form-field>
+    </div>
+
+<!--    </mat-form-field>-->
+<!--            <mat-form-field>-->
+<!--                <h4>Select Date and Time</h4>-->
+<!--                &lt;!&ndash;      <div class="form-group">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <input type="text" class="form-control" [ngxTimepicker]="timepicker" [(ngModel)]="selectedDateTime">&ndash;&gt;-->
+<!--                &lt;!&ndash;        <timepicker [(ngModel)]="time"></timepicker>&ndash;&gt;-->
+<!--                &lt;!&ndash;        <pre class="alert alert-info">Time is: {{time}}</pre>&ndash;&gt;-->
+<!--                &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--                <div class="form-group">-->
+<!--                    <timepicker formControlName="dueDateTime" [showSpinners]="true"></timepicker>-->
+<!--                </div>-->
+<!--                <button (click)="saveDateTime()">Save</button>-->
+<!--            </mat-form-field>-->
+
+   <div>
+     <mat-form-field>
+       <mat-label>Category</mat-label>
+       <mat-select formControlName = "todoCategoryId">
+         <mat-option  *ngFor="let todoCategory of todoCategories" [value]=todoCategory.id>{{todoCategory.name}}</mat-option>
+       </mat-select>
+     </mat-form-field>
+   </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="" (click)="addTodo()" class="dialog-actions">Save</button>
+  <button mat-button [mat-dialog-close]="null" color="warn">Cancel</button>
+</mat-dialog-actions>

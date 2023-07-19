@@ -10,19 +10,44 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {SignUpComponent} from "./sign-up/sign-up.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
 import {UserService} from "./services/user.service";
 import {ToastrModule} from 'ngx-toastr';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatListModule} from "@angular/material/list";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
+import { CategoryDialogComponent } from './dashboard/category-dialog/category-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { UserManagementComponent } from './dashboard/user-management/user-management.component';
+import {MatLineModule} from "@angular/material/core";
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { ListTodosComponent } from './dashboard/list-todos/list-todos.component';
+import {AddTodoDialogComponent} from "./dashboard/add-todo-dialog/add-todo-dialog.component";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {JwtInterceptor} from "./services/jwt.interceptor";
+import {MatSelectModule} from "@angular/material/select";
+import { EditTodoComponent } from './dashboard/edit-todo/edit-todo.component';
+
 
 @NgModule({
     declarations: [
         AppComponent,
         SignUpComponent,
-        LoginComponent
+        LoginComponent,
+        DashboardComponent,
+        CategoryDialogComponent,
+        AddTodoDialogComponent,
+        NavbarComponent,
+        UserManagementComponent,
+        ListTodosComponent,
+        EditTodoComponent
     ],
     imports: [
         BrowserModule,
@@ -37,9 +62,19 @@ import {ToastrService} from 'ngx-toastr';
         MatSnackBarModule,
         MatInputModule,
         ReactiveFormsModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        MatListModule,
+        MatTabsModule,
+        MatCardModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatLineModule,
+        TimepickerModule.forRoot(),
+        MatPaginatorModule,
+        MatSelectModule
     ],
-    providers: [UserService, ToastrService],
+    providers: [UserService, ToastrService,
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
 })
 export class AppModule {

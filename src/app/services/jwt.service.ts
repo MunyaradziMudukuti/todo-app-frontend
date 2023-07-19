@@ -8,7 +8,8 @@ export class JwtService {
   constructor() {
   }
 
-  getToken(): string | null {
+  getToken(): string {
+    // @ts-ignore
     return localStorage.getItem('token');
   }
 
@@ -18,6 +19,7 @@ export class JwtService {
 
   destroyToken(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
   }
 
   getRefreshToken(): string | null {
