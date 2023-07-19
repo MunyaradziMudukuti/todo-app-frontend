@@ -15,8 +15,12 @@ export class TodoService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addTodo(todoRequest: TodoRequest): Observable<Array<Todo>> {
-    return this.httpClient.post<Array<Todo>>(this.baseUrl, todoRequest);
+  addTodo(todoRequest: TodoRequest): Observable<Todo> {
+    return this.httpClient.post<Todo>(this.baseUrl, todoRequest);
+  }
+
+  editTodo(todoId: string, todoRequest: TodoRequest): Observable<Todo> {
+    return this.httpClient.put<Todo>(`${this.baseUrl}/${todoId}`, todoRequest);
   }
 
   searchTodos(searchTerm: string, pageNumber: number, pageSize: number): Observable<any> {

@@ -3,6 +3,8 @@ import {TodoService} from "../../services/todo.service";
 import {ToastrService} from "ngx-toastr";
 import {Todo} from "../../shared/models/todo/todo";
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {MatDialog} from "@angular/material/dialog";
+import {EditTodoComponent} from "../edit-todo/edit-todo.component";
 
 @Component({
   selector: 'app-list-todos',
@@ -26,7 +28,7 @@ export class ListTodosComponent implements OnInit {
 
   @ViewChild('paginator') paginator!: MatPaginator;
 
-  constructor(private todoService: TodoService, private toastrService: ToastrService) {
+  constructor(private dialog: MatDialog, private todoService: TodoService, private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -64,10 +66,18 @@ export class ListTodosComponent implements OnInit {
       )
   }
 
-  editTask(todo: Todo) {
+  editTodo(todo: Todo) {
+    const dialogRef = this.dialog.open(EditTodoComponent, {
+      width: '300px',
+      data: { todo: todo }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.searchTodo()
+      }
+    });
   }
-
   deleteTask(todo: Todo) {
 
   }

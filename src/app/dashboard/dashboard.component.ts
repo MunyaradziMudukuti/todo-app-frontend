@@ -58,20 +58,6 @@ export class DashboardComponent implements OnInit{
     })
   }
 
-  editTask(task: any) {
-    // const dialogRef = this.dialog.open(TodoDialogComponent, {
-    //   width: '300px',
-    //   data: { task }
-    // });
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     // Perform task update logic here
-    //     console.log('Task updated:', result);
-    //   }
-    // });
-  }
-
   deleteTask(task: any) {
     // Perform task deletion logic here
     console.log('Task deleted:', task);
