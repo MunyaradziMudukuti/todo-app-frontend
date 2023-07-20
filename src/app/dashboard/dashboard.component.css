@@ -2,8 +2,8 @@
 .dashboard-container{
   margin: auto auto;
   border-radius: 15px;
-  width: 700px;
-  height: 700px;
+  width: 1000px;
+  height: 1000px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   position: relative;
 }
@@ -102,3 +102,4 @@
 .mat-fab{
   color: #ff5c35;
 }
+

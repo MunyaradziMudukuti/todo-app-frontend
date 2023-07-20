@@ -13,7 +13,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
 
-    if (this.jwtService.getToken() && !request.url.includes('refresh')) {
+    if (this.jwtService.getToken() && !request.url.includes('refresh') && !request.url.includes('login')) {
       request = this.addToken(request, this.jwtService.getToken());
     }
     return next.handle(request).pipe(

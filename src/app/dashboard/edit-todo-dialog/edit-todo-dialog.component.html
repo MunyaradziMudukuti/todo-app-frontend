@@ -1,6 +1,6 @@
 <h2 mat-dialog-title class="dialog-title">Edit Task</h2>
 <mat-dialog-content class="dialog-content" style="height: 50%">
-  <form [formGroup]="taskForm">
+  <form [formGroup]="todoForm">
 
     <div>
       <mat-form-field>
@@ -32,7 +32,6 @@
       <mat-form-field>
         <mat-label>Category</mat-label>
         <mat-select formControlName = "todoCategoryId" mat>
-<!--          <mat-option [value] = getTodo().todoCategory.name  disabled >Placeholder Text</mat-option>-->
           <mat-option pla  *ngFor="let todoCategory of todoCategories" [value]=todoCategory.id>{{todoCategory.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -40,6 +39,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="todo" (click)="editTodo()" class="dialog-actions">Save</button>
+  <button mat-button [mat-dialog-close]="todo" (click)="editTodo()" class="dialog-actions" [disabled]="todoForm.invalid">Save</button>
   <button mat-button [mat-dialog-close]="null" color="warn">Cancel</button>
 </mat-dialog-actions>

@@ -27,4 +27,7 @@ export class TodoService {
     return this.httpClient.get<Todo []>(`${this.baseUrl}/search?page=${pageNumber}&size=${pageSize}&searchTerm=${searchTerm}`);
   }
 
+  deleteTodo(todoId: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/${todoId}`)
+  }
 }

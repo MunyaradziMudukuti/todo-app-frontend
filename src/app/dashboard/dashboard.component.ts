@@ -1,8 +1,9 @@
-import {Component,EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {CategoryDialogComponent} from "./category-dialog/category-dialog.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AddTodoDialogComponent} from "./add-todo-dialog/add-todo-dialog.component";
+import {ListTodosComponent} from "./list-todos/list-todos.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit{
     { name: 'Category 3' }
   ];
 
-  reloadTodos: boolean = false;
+  searchTerm: string = " ";
+  @ViewChild(ListTodosComponent) listTodosComponent!: ListTodosComponent;
 
   constructor(private dialog: MatDialog,private fb: FormBuilder) {}
 
@@ -32,15 +34,12 @@ export class DashboardComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Perform category update logic here
         console.log('Category updated:', result);
-        this.reloadTodos = true;
       }
     });
   }
 
   deleteCategory(category: any) {
-    // Perform category deletion logic here
     console.log('Category deleted:', category);
   }
 
@@ -52,15 +51,18 @@ export class DashboardComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Perform task update logic here
-        console.log('Task updated:', result);
+        this.listTodosComponent.searchTodo("");
       }
     })
   }
 
   deleteTask(task: any) {
-    // Perform task deletion logic here
     console.log('Task deleted:', task);
+  }
+
+  onSearch(searchTerm: string) {
+    this.searchTerm = searchTerm
+    this.listTodosComponent.searchTodo(searchTerm)
   }
 }
 

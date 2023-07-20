@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TodoCategory} from "../../shared/models/todo/todo.category";
+import {Todo} from "../../shared/models/todo/todo";
 import {TodoCategoryService} from "../../services/todo-category.service";
 import {TodoService} from "../../services/todo.service";
 import {TodoRequest} from "../../shared/models/todo/todo.request";
@@ -15,7 +16,8 @@ export class AddTodoDialogComponent implements OnInit {
 
   selectedDateTime!: Date;
   todoCategories!: TodoCategory [];
-  taskForm!: FormGroup
+  taskForm!: FormGroup;
+  todo!: Todo;
 
   constructor(private fb: FormBuilder, private todoCategoryService: TodoCategoryService, private todoService: TodoService, private toastrService: ToastrService) {
   }
@@ -36,6 +38,9 @@ export class AddTodoDialogComponent implements OnInit {
     this.todoService.addTodo(todoRequest)
       .subscribe(
         {
+          next: value => {
+            this.todo = value;
+          },
           error: err => {
             this.toastrService.error(err.error.message);
           }
@@ -47,7 +52,7 @@ export class AddTodoDialogComponent implements OnInit {
     this.taskForm = this.fb.group(
       {
         title: [null, Validators.required],
-        description: [null, Validators.required],
+        description: [null],
         todoCategoryId: [null, Validators.required],
         dueDateTime: [null]
       }

@@ -4,7 +4,8 @@
         <div class="item-content">
           <div class="item-flex">
             <h3 matLine class="todo-name">{{ todo.title }}</h3>
-            <h3 matLine class="todo-description">{{ todo.description }}</h3>
+            <h3 matLine class="todo-description ">{{ todo.description }}</h3>
+            <h3 matLine class="todo-category">{{ todo.todoCategory.name }}</h3>
           </div>
           <div class="item-actions">
             <button mat-icon-button (click)="editTodo(todo)">

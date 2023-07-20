@@ -33,7 +33,8 @@ import {AddTodoDialogComponent} from "./dashboard/add-todo-dialog/add-todo-dialo
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {JwtInterceptor} from "./services/jwt.interceptor";
 import {MatSelectModule} from "@angular/material/select";
-import { EditTodoComponent } from './dashboard/edit-todo/edit-todo.component';
+import { EditTodoDialogComponent } from './dashboard/edit-todo-dialog/edit-todo-dialog.component';
+import { DeleteTodoDialogComponent } from './dashboard/delete-todo-dialog/delete-todo-dialog.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { EditTodoComponent } from './dashboard/edit-todo/edit-todo.component';
         NavbarComponent,
         UserManagementComponent,
         ListTodosComponent,
-        EditTodoComponent
+        EditTodoDialogComponent,
+        DeleteTodoDialogComponent
     ],
     imports: [
         BrowserModule,

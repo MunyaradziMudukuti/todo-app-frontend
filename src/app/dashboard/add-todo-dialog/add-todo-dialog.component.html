@@ -39,6 +39,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="" (click)="addTodo()" class="dialog-actions">Save</button>
+  <button mat-button [mat-dialog-close]="todo" (click)="addTodo()" class="dialog-actions" [disabled]="taskForm.invalid">Save</button>
   <button mat-button [mat-dialog-close]="null" color="warn">Cancel</button>
 </mat-dialog-actions>

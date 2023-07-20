@@ -1,10 +1,11 @@
 <div class="dashboard-container">
-  <app-navbar></app-navbar>
+  <app-navbar (searchInput)="onSearch($event)"></app-navbar>
   <mat-card>
     <mat-card-content>
       <mat-tab-group class="custom-tab">
 
         <mat-tab label="Tasks">
+          <div style="margin-bottom: 10px"></div>
           <app-list-todos></app-list-todos>
         </mat-tab>
 

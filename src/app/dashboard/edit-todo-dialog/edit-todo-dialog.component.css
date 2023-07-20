@@ -1,0 +1,23 @@
+.dialog-title {
+  color: #ff5c35;
+}
+
+.dialog-content {
+  border-radius: 10px;
+  display: flex;
+}
+
+form {
+  flex: 1;
+  width: 100%;
+}
+
+mat-form-field {
+  flex: 1;
+  width: 100%;
+}
+
+.dialog-actions {
+  border-radius: 0 0 10px 10px;
+}
+

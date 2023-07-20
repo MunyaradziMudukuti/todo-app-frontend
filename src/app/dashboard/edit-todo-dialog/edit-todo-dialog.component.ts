@@ -10,21 +10,20 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-edit-todo',
-  templateUrl: './edit-todo.component.html',
-  styleUrls: ['./edit-todo.component.css']
+  selector: 'app-edit-todo-dialog',
+  templateUrl: './edit-todo-dialog.component.html',
+  styleUrls: ['./edit-todo-dialog.component.css']
 })
-export class EditTodoComponent {
+export class EditTodoDialogComponent {
 
   selectedDateTime!: Date;
   todoCategories!: TodoCategory [];
-  taskForm!: FormGroup
+  todoForm!: FormGroup
   todo!: Todo;
   editedTodo!: Todo;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any, private fb: FormBuilder, private todoCategoryService: TodoCategoryService, private todoService: TodoService, private toastrService: ToastrService) {
     this.todo = this.data.todo;
-    console.log("############## todo: ", this.todo);
   }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class EditTodoComponent {
   }
 
   editTodo()  {
-    const todoRequest: TodoRequest = this.taskForm.getRawValue();
+    const todoRequest: TodoRequest = this.todoForm.getRawValue();
      this.todoService.editTodo(this.todo.id, todoRequest)
       .subscribe(
         {
@@ -54,10 +53,10 @@ export class EditTodoComponent {
   }
 
   createForm() {
-    this.taskForm = this.fb.group(
+    this.todoForm = this.fb.group(
       {
         title: [this.todo.title, Validators.required],
-        description: [this.todo.description, Validators.required],
+        description: [this.todo.description],
         todoCategoryId: [this.todo.todoCategory.id, Validators.required],
         dueDateTime: [null]
       }
