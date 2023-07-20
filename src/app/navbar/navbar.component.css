@@ -11,6 +11,7 @@
 mat-toolbar {
   color: #ff5c35;
   background-color: #353b48;
+  border-radius: 2px;
 }
 
 .container.h-100{

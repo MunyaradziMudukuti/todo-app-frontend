@@ -1,0 +1,21 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <mat-nav-list>
+      <h3 mat-subheader>Navigation</h3>
+
+      <mat-list-item routerLink="/account-settings">
+        <mat-icon matListItemIcon>settings</mat-icon><span>Account Settings</span>
+      </mat-list-item>
+
+      <a mat-list-item routerLink="/todo-list">Todo List</a>
+      <a mat-list-item routerLink="/category">Category</a>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Log Out</span>
+      </button>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

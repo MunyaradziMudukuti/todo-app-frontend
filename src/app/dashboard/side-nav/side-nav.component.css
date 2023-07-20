@@ -1,0 +1,27 @@
+.container {
+  height: 100%;
+}
+
+mat-drawer {
+  width: 280px; /* Increase the width by 10% (e.g., 200px + 10% = 220px) */
+  background-color: #d32f2f;
+  color: white;
+}
+
+mat-nav-list {
+  padding-top: 20px;
+}
+
+/* Style the links in the side nav */
+mat-nav-list a {
+  color: white;
+  text-decoration: none;
+}
+
+mat-nav-list a:hover {
+  background-color: #333;
+}
+
+.mdc-list-item :hover{
+  background-color: yellow;
+}

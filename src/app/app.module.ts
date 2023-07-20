@@ -35,6 +35,8 @@ import {JwtInterceptor} from "./services/jwt.interceptor";
 import {MatSelectModule} from "@angular/material/select";
 import { EditTodoDialogComponent } from './dashboard/edit-todo-dialog/edit-todo-dialog.component';
 import { DeleteTodoDialogComponent } from './dashboard/delete-todo-dialog/delete-todo-dialog.component';
+import { SideNavComponent } from './dashboard/side-nav/side-nav.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 @NgModule({
@@ -49,32 +51,34 @@ import { DeleteTodoDialogComponent } from './dashboard/delete-todo-dialog/delete
         UserManagementComponent,
         ListTodosComponent,
         EditTodoDialogComponent,
-        DeleteTodoDialogComponent
+        DeleteTodoDialogComponent,
+        SideNavComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        HttpClientModule,
-        MatSlideToggleModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        ToastrModule.forRoot(),
-        MatListModule,
-        MatTabsModule,
-        MatCardModule,
-        MatDialogModule,
-        MatToolbarModule,
-        MatLineModule,
-        TimepickerModule.forRoot(),
-        MatPaginatorModule,
-        MatSelectModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    MatListModule,
+    MatTabsModule,
+    MatCardModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatLineModule,
+    TimepickerModule.forRoot(),
+    MatPaginatorModule,
+    MatSelectModule,
+    MatSidenavModule,
+  ],
     providers: [UserService, ToastrService,
       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
