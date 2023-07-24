@@ -23,6 +23,10 @@ export class TodoService {
     return this.httpClient.put<Todo>(`${this.baseUrl}/${todoId}`, todoRequest);
   }
 
+  getTodo(todoId: string): Observable<any> {
+    return this.httpClient.get<Todo>(`${this.baseUrl}/${todoId}`);
+  }
+
   searchTodos(searchTerm: string, pageNumber: number, pageSize: number): Observable<any> {
     return this.httpClient.get<Todo []>(`${this.baseUrl}/search?page=${pageNumber}&size=${pageSize}&searchTerm=${searchTerm}`);
   }

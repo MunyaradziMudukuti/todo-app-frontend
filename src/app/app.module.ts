@@ -37,6 +37,7 @@ import { EditTodoDialogComponent } from './dashboard/edit-todo-dialog/edit-todo-
 import { DeleteTodoDialogComponent } from './dashboard/delete-todo-dialog/delete-todo-dialog.component';
 import { SideNavComponent } from './dashboard/side-nav/side-nav.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { ViewTodoComponent } from './dashboard/view-todo/view-todo.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         ListTodosComponent,
         EditTodoDialogComponent,
         DeleteTodoDialogComponent,
-        SideNavComponent
+        SideNavComponent,
+        ViewTodoComponent
     ],
   imports: [
     BrowserModule,

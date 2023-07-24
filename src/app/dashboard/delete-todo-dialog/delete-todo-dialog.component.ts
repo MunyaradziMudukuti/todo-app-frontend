@@ -9,7 +9,7 @@ import {Todo} from "../../shared/models/todo/todo";
 @Component({
   selector: 'app-delete-todo-dialog',
   templateUrl: './delete-todo-dialog.component.html',
-  styleUrls: ['./delete-todo-dialog.component.css']
+  styleUrls: ['./delete-todo-dialog.component.scss']
 })
 export class DeleteTodoDialogComponent {
 

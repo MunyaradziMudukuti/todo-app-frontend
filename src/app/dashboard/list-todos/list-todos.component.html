@@ -1,26 +1,47 @@
+<div class="container">
 
-    <div class="tab-content">
-      <div class="list-item" *ngFor="let todo of todos">
-        <div class="item-content">
-          <div class="item-flex">
-            <h3 matLine class="todo-name">{{ todo.title }}</h3>
-            <h3 matLine class="todo-description ">{{ todo.description }}</h3>
-            <h3 matLine class="todo-category">{{ todo.todoCategory.name }}</h3>
+  <div class="todo-card-container">
+
+    <div class="list-todos-container">
+
+<!--      <form class="search-box">-->
+<!--        <input type="text" placeholder=" "/>-->
+<!--        <button type="reset"></button>-->
+<!--      </form>-->
+      <div class="items-container">
+        <div class="list-item" *ngFor="let todo of todos">
+          <div class="item-content">
+            <div (click)="viewTodo(todo.id)">
+              <h3 matListItemLine class="todo-name items-font">{{ todo.title }}</h3>
+              <p matListItemLine class="todo-category items-font">{{ todo.todoCategory.name }}</p>
+            </div>
           </div>
           <div class="item-actions">
-            <button mat-icon-button (click)="editTodo(todo)">
-              <mat-icon>edit</mat-icon>
-            </button>
+            <!--              <button mat-icon-button (click)="editTodo(todo)">-->
+            <!--                <mat-icon>edit</mat-icon>-->
+            <!--              </button>-->
             <button mat-icon-button (click)="deleteTask(todo)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon style="color: #ce9e62">delete</mat-icon>
             </button>
           </div>
         </div>
       </div>
-      <mat-paginator #paginator [length]="length"
-                     [pageSize]="pageSize"
-                     [pageIndex]="currentPage"
-                     [pageSizeOptions]="pageSizeOptions"
-                     (page)="onPageChange($event)">
-      </mat-paginator>
+
+      <div>
+        <mat-paginator class="footer" #paginator [length]="length"
+                       [pageSize]="pageSize"
+                       [pageIndex]="currentPage"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+
     </div>
+
+    <div class="view-todos-container">
+      <app-view-todo></app-view-todo>
+    </div>
+
+  </div>
+
+</div>

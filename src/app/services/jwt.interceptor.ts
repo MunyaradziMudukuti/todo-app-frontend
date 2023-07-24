@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
-import {AuthService} from './auth.service';
+import {AuthService, isAuthenticated} from './auth.service';
 import {catchError, switchMap} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {JwtService} from "./jwt.service";
@@ -19,8 +19,8 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse && request.url.includes('refresh') && error.status === 401) {
-          this.toastr.error('Session Expired, Kindly Login');
           this.authService.logout();
+          this.toastr.error('Session Expired, Kindly Login');
         }
         if (error instanceof HttpErrorResponse && !request.url.includes('login') && error.status === 401) {
           return this.handle401Error(request, next);
@@ -49,6 +49,7 @@ export class JwtInterceptor implements HttpInterceptor {
           return next.handle(this.addToken(request, res.access));
         }),
         catchError((error) => {
+          this.authService.logout();
           this.toastr.error('Session Expired, Kindly Login');
           return throwError(() => error);
         })
@@ -56,6 +57,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     return throwError(() => {
+      this.authService.logout();
       this.toastr.error('Session Expired, Kindly Login');
       this.authService.logout()
     });

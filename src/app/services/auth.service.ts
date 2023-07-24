@@ -1,12 +1,15 @@
-import {Injectable} from '@angular/core';
+import {Injectable, ViewChild} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {JwtService} from "./jwt.service";
-import {Observable, throwError} from "rxjs";
+import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {LoginResponse} from "../shared/models/auth/login.response";
 import {apiUrl} from "../shared/models/contants/constants";
 import {LoginRequest} from "../shared/models/auth/login.request";
 import {ToastrService} from 'ngx-toastr';
 import {Router} from "@angular/router";
+import {AppComponent} from "../app.component";
+
+export var isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +33,9 @@ export class AuthService {
           next: loginResponse => {
             this.jwtService.saveToken(loginResponse.access);
             this.jwtService.saveRefreshToken(loginResponse.refresh);
-            this.toastrService.success('Logged in successfully');
-            this.router.navigate(['dashboard']);
+            isAuthenticated.next(true);
+            this.toastrService.success('Logged in successfully')
+            this.router.navigate(['list-todos'])
           },
           error: err => {
             this.toastrService.error('Failed to log in');
@@ -41,8 +45,8 @@ export class AuthService {
   }
 
   logout(): void {
-    this.router.navigate(['login'])
     this.jwtService.destroyToken();
+    this.router.navigate(['login'])
   }
 
   isAuthenticated(): boolean {

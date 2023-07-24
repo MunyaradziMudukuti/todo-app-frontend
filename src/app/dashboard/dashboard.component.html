@@ -1,35 +1,34 @@
-<div class="dashboard-container">
-  <app-navbar (searchInput)="onSearch($event)"></app-navbar>
-  <mat-card>
-    <mat-card-content>
-      <mat-tab-group class="custom-tab">
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" [opened]=isAuthenticated()>
+    <mat-nav-list>
 
-        <mat-tab label="Tasks">
-          <div style="margin-bottom: 10px"></div>
-          <app-list-todos></app-list-todos>
-        </mat-tab>
+      <h2 class="header-container">
+        <mat-icon class="header-icon-display" matListItemIcon>beenhere</mat-icon>
+        <span class="header">TODO APP</span>
+      </h2>
 
-        <mat-tab label="Categories">
-          <mat-list>
-            <mat-list-item *ngFor="let category of categories">
-              <p matLine>{{ category.name }}</p>
-              <button mat-icon-button (click)="editCategory(category)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button (click)="deleteCategory(category)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-list-item>
-          </mat-list>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
+      <a mat-list-item routerLink="/account-settings">
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span class="nav-list-items">Account Settings</span>
+      </a>
 
-  <div class="floating-button">
-    <button mat-fab aria-label="Add Task" (click)="addTask()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+      <a mat-list-item routerLink="/list-todos">
+        <mat-icon matListItemIcon>tasks</mat-icon>
+        <span class="nav-list-items">All My Todos</span>
+      </a>
 
-</div>
+      <a mat-list-item routerLink="/todo-list">
+        <mat-icon matListItemIcon>assignment</mat-icon>
+        <span class="nav-list-items">All My Categories</span>
+      </a>
+
+      <a mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span class="nav-list-items">Log Out</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,39 +1,40 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthService} from "../services/auth.service";
+import {AuthService, isAuthenticated} from "../services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-    loginForm!: FormGroup
+  loginForm!: FormGroup
 
-    public constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) {
-    }
+  public constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) {
+  }
 
-    ngOnInit(): void {
-        this.createForm()
-    }
+  ngOnInit(): void {
+    isAuthenticated.next(false);
+    this.createForm()
+  }
 
-    createForm() {
-        this.loginForm = this.fb.group(
-            {
-                username: [null, Validators.required],
-                password: [null, Validators.required]
-            }
-        )
-    }
+  createForm() {
+    this.loginForm = this.fb.group(
+      {
+        username: [null, Validators.required],
+        password: [null, Validators.required]
+      }
+    )
+  }
 
-    goToSignup() {
-        this.router.navigate(['/signup']);
-    }
+  goToSignup() {
+    this.router.navigate(['/signup']);
+  }
 
-    login() {
-        const loginRequest = this.loginForm.getRawValue()
-        this.authService.login(loginRequest);
-    }
+  login() {
+    const loginRequest = this.loginForm.getRawValue()
+    this.authService.login(loginRequest);
+  }
 }
