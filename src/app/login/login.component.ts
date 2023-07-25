@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService, isAuthenticated} from "../services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {JwtService} from "../services/jwt.service";
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,11 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup
 
-  public constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) {
+  public constructor(private router: Router, private authService: AuthService,private jwtService: JwtService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    isAuthenticated.next(false);
+    this.jwtService.destroyToken();
     this.createForm()
   }
 
