@@ -51,7 +51,7 @@ export class ListTodosComponent implements OnInit {
 
   private loadTodo() {
     console.log("############### List Search Term: ", this.searchTerm);
-    this.todoService.searchTodos(this.searchTerm, this.pageNumber, this.pageSize)
+    this.todoService.searchPagedTodos(this.searchTerm, this.pageNumber, this.pageSize)
       .subscribe(
         {
           next: res => {

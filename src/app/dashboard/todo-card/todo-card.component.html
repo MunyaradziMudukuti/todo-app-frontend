@@ -1,0 +1,128 @@
+<mat-toolbar class="custom-toolbar"> Responsive Card Grid</mat-toolbar>
+<div class="container responsive-grid">
+  <mat-card *ngFor="let todo of todos" class="custom-card">
+    <div class="card-container" [ngStyle]="{'background-color': randomizeBackgroundColor()}">
+      <mat-card-header class="custom-card-header">
+        <mat-card-title>{{ todo.title }} </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="custom-card-content">
+        <br/>
+        <p>{{ todo.description }}</p>
+      </mat-card-content>
+      <mat-card-actions class="custom-card-actions">
+
+        <div *ngIf="todo.dueDate">
+          <button mat-raised-button
+                  [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="menu">
+            <mat-icon style="color: #ce9e62">date_range</mat-icon>
+            <p *ngIf="todo.dueDate !== null">
+              <br>
+              {{formatDate(todo.dueDate.toString())}}
+            </p>
+          </button>
+        </div>
+
+        <mat-menu #menu="matMenu" class="custom-mat-menu">
+          <section class="user-menu">
+            <mat-form-field appearance="fill">
+              <mat-label>Select Date</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDueDate"/>
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>today</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="custom-due-date-save-button">
+              <button mat-raised-button style="color: #215ABA" (click)="changeDate(todo)"> Save</button>
+            </div>
+          </section>
+        </mat-menu>
+
+        <div>
+          <button *ngIf="todo.reminderFrequency; else frequencyIconButton"
+            mat-raised-button
+            [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="frequencyMenu">
+            <mat-icon style="color: #ce9e62">cached</mat-icon>
+            <p *ngIf="todo.reminderFrequency">
+              <br>
+              {{todo.reminderFrequency}}
+            </p>
+          </button>
+
+          <ng-template #frequencyIconButton>
+            <button mat-icon-button
+                    [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="frequencyMenu">
+              <mat-icon style="color: #ce9e62">cached</mat-icon>
+            </button>
+          </ng-template>
+        </div>
+
+
+        <div *ngIf="todo.reminderFrequency">
+          <button mat-raised-button
+                  [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="menu">
+            <mat-icon style="color: #ce9e62">cached</mat-icon>
+            <p *ngIf="todo.reminderFrequency">
+              <br>
+              {{formatDate(todo.reminderFrequency)}}
+            </p>
+          </button>
+        </div>
+
+        <mat-menu #frequencyMenu="matMenu" class="custom-mat-menu">
+          <button mat-menu-item
+                  *ngFor="let frequency of ReminderFrequency | keyvalue"
+                  (click)="changeFrequency(todo, frequency.value)"
+          >{{frequency.value}}</button>
+        </mat-menu>
+
+        <div *ngIf="!todo.dueDate">
+          <button mat-icon-button (click)="changeDate(todo) "
+                  [ngStyle]="{'background-color': 'transparent'}">
+            <mat-icon style="color: #ce9e62">date_range</mat-icon>
+            <p *ngIf="todo.dueDate !== null">
+              <br>
+              {{formatDate(todo.dueDate)}}
+            </p>
+          </button>
+        </div>
+
+        <div>
+          <button (click)="changeDateTime(todo)"
+                  mat-raised-button
+                  *ngIf="todo.reminderDateTime; else reminderIconButton"
+                  [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="reminderDateTimeMenu">
+            <mat-icon style="color: #ce9e62">alarm</mat-icon>
+          </button>
+
+          <ng-template #reminderIconButton>
+            <button mat-icon-button
+                    (click)="changeDateTime(todo)"
+                    [ngStyle]="{'background-color': 'transparent'}" [matMenuTriggerFor]="reminderDateTimeMenu">
+              <mat-icon style="color: #ce9e62">alarm</mat-icon>
+            </button>
+          </ng-template>
+        </div>
+
+
+        <mat-menu #reminderDateTimeMenu="matMenu" class="custom-mat-menu">
+          <mat-form-field appearance="fill">
+            <mat-label>Date time</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="reminderDateTime"/>
+            <input matInput class="time-picker" type="time" id="appt" name="appt" [(ngModel)]="reminderDateTime" />
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>today</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-menu>
+
+        <button mat-icon-button (click)="deleteTask(todo)">
+          <mat-icon style="color: #ce9e62">delete</mat-icon>
+        </button>
+
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
+<!--[ngStyle]="{'background-image': 'url(' + todo.imageUrl + ')'}"-->

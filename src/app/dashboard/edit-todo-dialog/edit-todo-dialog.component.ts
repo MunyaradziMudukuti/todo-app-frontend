@@ -8,6 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {TodoRequest} from "../../shared/models/todo/todo.request";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {Observable} from "rxjs";
+import {UpdateTodoRequest} from "../../shared/models/todo/update.todo.date.time";
 
 @Component({
   selector: 'app-edit-todo-dialog',
@@ -38,7 +39,7 @@ export class EditTodoDialogComponent {
   }
 
   editTodo()  {
-    const todoRequest: TodoRequest = this.todoForm.getRawValue();
+    const todoRequest: UpdateTodoRequest = this.todoForm.getRawValue();
      this.todoService.editTodo(this.todo.id, todoRequest)
       .subscribe(
         {

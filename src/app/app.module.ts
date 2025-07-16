@@ -17,45 +17,58 @@ import {UserService} from "./services/user.service";
 import {ToastrModule} from 'ngx-toastr';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {MatListModule} from "@angular/material/list";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCardModule} from "@angular/material/card";
-import { CategoryDialogComponent } from './dashboard/category-dialog/category-dialog.component';
+import {CategoryDialogComponent} from './dashboard/category-dialog/category-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import { UserManagementComponent } from './dashboard/user-management/user-management.component';
+import {UserManagementComponent} from './dashboard/user-management/user-management.component';
 import {MatLineModule} from "@angular/material/core";
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { ListTodosComponent } from './dashboard/list-todos/list-todos.component';
+import {TimepickerModule} from 'ngx-bootstrap/timepicker';
+import {ListTodosComponent} from './dashboard/list-todos/list-todos.component';
 import {AddTodoDialogComponent} from "./dashboard/add-todo-dialog/add-todo-dialog.component";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {JwtInterceptor} from "./services/jwt.interceptor";
 import {MatSelectModule} from "@angular/material/select";
-import { EditTodoDialogComponent } from './dashboard/edit-todo-dialog/edit-todo-dialog.component';
-import { DeleteTodoDialogComponent } from './dashboard/delete-todo-dialog/delete-todo-dialog.component';
-import { SideNavComponent } from './dashboard/side-nav/side-nav.component';
+import {EditTodoDialogComponent} from './dashboard/edit-todo-dialog/edit-todo-dialog.component';
+import {DeleteTodoDialogComponent} from './dashboard/delete-todo-dialog/delete-todo-dialog.component';
+import {SideNavComponent} from './dashboard/side-nav/side-nav.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
-import { ViewTodoComponent } from './dashboard/view-todo/view-todo.component';
+import {ViewTodoComponent} from './dashboard/view-todo/view-todo.component';
+import {TodoCardComponent} from './dashboard/todo-card/todo-card.component';
+import {
+  ChangeDateTimeDialogComponent
+} from './dashboard/change-date-time-dialog-component/change-date-time-dialog.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {ChangeDateDialogComponent} from './dashboard/change-date-dialog-component/change-date-dialog-component';
+import {MatMenuModule} from "@angular/material/menu";
+import {DateTimePickerComponent} from "./dashboard/date-time-picker/date-time-picker.component";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        SignUpComponent,
-        LoginComponent,
-        DashboardComponent,
-        CategoryDialogComponent,
-        AddTodoDialogComponent,
-        NavbarComponent,
-        UserManagementComponent,
-        ListTodosComponent,
-        EditTodoDialogComponent,
-        DeleteTodoDialogComponent,
-        SideNavComponent,
-        ViewTodoComponent
-    ],
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    LoginComponent,
+    DashboardComponent,
+    CategoryDialogComponent,
+    AddTodoDialogComponent,
+    NavbarComponent,
+    UserManagementComponent,
+    ListTodosComponent,
+    EditTodoDialogComponent,
+    DeleteTodoDialogComponent,
+    SideNavComponent,
+    ViewTodoComponent,
+    TodoCardComponent,
+    ChangeDateTimeDialogComponent,
+    ChangeDateDialogComponent,
+    DateTimePickerComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -80,10 +93,13 @@ import { ViewTodoComponent } from './dashboard/view-todo/view-todo.component';
     MatPaginatorModule,
     MatSelectModule,
     MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
   ],
-    providers: [UserService, ToastrService,
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
-    bootstrap: [AppComponent]
+  providers: [UserService, ToastrService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
